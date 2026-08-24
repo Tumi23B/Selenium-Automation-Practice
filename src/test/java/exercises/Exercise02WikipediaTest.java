@@ -24,8 +24,8 @@ public class Exercise02WikipediaTest {
         // Submit the search
         driver.findElement(By.id("searchInput")).submit();
 
-        // Wait 10 seconds so we can see the result
-        Thread.sleep(10000);
+        // Wait 1 second so we can see the result
+       // Thread.sleep(1000);
 
         // Get the page heading
         String heading = driver.findElement(By.id("firstHeading")).getText();

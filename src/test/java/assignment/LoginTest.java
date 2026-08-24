@@ -150,7 +150,7 @@ public class LoginTest {
     }
 
     /**
-     * Takes a screenshot with a timestamp - FIXED VERSION
+     * Takes a screenshot with a timestamp - WORKING VERSION
      */
     private String takeScreenshot(String testName) {
         try {
@@ -167,7 +167,8 @@ public class LoginTest {
             String filename = testName + "_" + timestamp + ".png";
             Path screenshotPath = screenshotDir.resolve(filename);
 
-            // Take screenshot - THIS IS THE KEY PART
+            // Take screenshot - THIS IS THE KEY PART/
+            // //NBNBNNBNBNBNBNBNBNBNBNBNB
             TakesScreenshot screenshotTaker = (TakesScreenshot) driver;
             File screenshot = screenshotTaker.getScreenshotAs(OutputType.FILE);
             
@@ -192,7 +193,7 @@ public class LoginTest {
     private void pauseForVisual(String action) {
         try {
             System.out.println("Pausing to view: " + action);
-            Thread.sleep(2000);
+            Thread.sleep(1000);
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
         }
@@ -235,7 +236,7 @@ public class LoginTest {
                 "Expected login success message containing: '" + LOGIN_SUCCESS_MSG + 
                 "' but got: '" + loginMessage + "'"
             );
-            System.out.println("✓ Login successful!");
+            System.out.println(" Login successful!");
 
             // Step 4: Logout(functionality will be implemented soon)
             logout();
@@ -253,7 +254,7 @@ public class LoginTest {
                 "Expected logout success message containing: '" + LOGOUT_SUCCESS_MSG + 
                 "' but got: '" + logoutMessage + "'"
             );
-            System.out.println("✓ Logout successful!");
+            System.out.println(" Logout successful!");
 
             System.out.println(" Test passed: Valid login and logout completed successfully.");
 
@@ -297,7 +298,7 @@ public class LoginTest {
                 "Expected error message containing: '" + LOGIN_ERROR_MSG + 
                 "' but got: '" + errorMessage + "'"
             );
-            System.out.println("✓ Error message displayed correctly!");
+            System.out.println(" Error message displayed correctly!");
 
             System.out.println(" Test passed: Invalid login handled correctly with screenshot captured.");
 

@@ -180,13 +180,13 @@ public class SauceDemoTest {
             // ==========================================
 
             System.out.println(
-                    "PASS - Sauce Demo order completed successfully."
+                    "PASS // Sauce Demo order completed successfully."
             );
 
         } catch (Exception e) {
 
             System.out.println(
-                    "FAIL - Sauce Demo test failed."
+                    "FAIL - Sauce Demo test FAILED !!!."
             );
 
             throw e;
