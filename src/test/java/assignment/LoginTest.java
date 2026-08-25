@@ -48,7 +48,7 @@ public class LoginTest {
     private static final String SCREENSHOTS_DIR = "screenshots";
     
     // Success messages
-    private static final String LOGIN_SUCCESS_MSG = "You logged into the secure area!";
+    private static final String LOGIN_SUCCESS_MSG = "You logged into a secure area!";
     private static final String LOGOUT_SUCCESS_MSG = "You logged out of the secure area!";
     private static final String LOGIN_ERROR_MSG = "Your username is invalid!";
 
@@ -238,7 +238,7 @@ public class LoginTest {
             );
             System.out.println(" Login successful!");
 
-            // Step 4: Logout(functionality will be implemented soon)
+            // Step 4: Logout(functionality to be implemented soon)
             logout();
             pauseForVisual("After logout");
 

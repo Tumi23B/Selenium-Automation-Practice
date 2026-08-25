@@ -11,20 +11,33 @@
     <artifactId>java-automation</artifactId>
     <version>1.0-SNAPSHOT</version>
 
+    <!-- =========================================================
+         PROJECT PROPERTIES
+         ========================================================= -->
+
     <properties>
+
         <maven.compiler.source>25</maven.compiler.source>
         <maven.compiler.target>25</maven.compiler.target>
+
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
     </properties>
+
+
+    <!-- =========================================================
+         DEPENDENCIES
+         ========================================================= -->
 
     <dependencies>
 
-        <!-- Selenium -->
+        <!-- Selenium WebDriver -->
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
             <version>4.35.0</version>
         </dependency>
+
 
         <!-- JUnit 5 -->
         <dependency>
@@ -36,24 +49,113 @@
 
     </dependencies>
 
+
+    <!-- =========================================================
+         BUILD CONFIGURATION
+         ========================================================= -->
+
     <build>
+
         <plugins>
 
-            <!-- Maven Compiler -->
+
+            <!-- =================================================
+                 MAVEN COMPILER
+                 ================================================= -->
+
             <plugin>
+
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.14.0</version>
+
             </plugin>
 
-            <!-- Run JUnit tests -->
+
+            <!-- =================================================
+                 MAVEN SUREFIRE
+                 
+                 Runs the JUnit tests and creates the REAL
+                 results inside target/surefire-reports.
+                 ================================================= -->
+
             <plugin>
+
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.5.3</version>
+
+                <configuration>
+
+                    <!--
+                        Continue the Maven lifecycle even if
+                        tests fail so that our custom report
+                        generator can still run.
+                    -->
+                    <testFailureIgnore>true</testFailureIgnore>
+
+                </configuration>
+
             </plugin>
 
+
+            <!-- =================================================
+                 CUSTOM HTML REPORT GENERATOR
+                 
+                 Runs AFTER the tests and reads:
+                 
+                 target/surefire-reports/
+                 
+                 It then creates:
+                 
+                 target/automation-test-report.html
+                 ================================================= -->
+
+            <plugin>
+
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>3.5.0</version>
+
+                <executions>
+
+                    <execution>
+
+                        <id>generate-automation-report</id>
+
+                        <!--
+                            Execute after Maven has completed
+                            the test phase.
+                        -->
+                        <phase>test</phase>
+
+                        <goals>
+
+                            <goal>java</goal>
+
+                        </goals>
+
+                        <configuration>
+
+                            <mainClass>
+                                reporting.TestReportGenerator
+                            </mainClass>
+
+                            <classpathScope>
+                                test
+                            </classpathScope>
+
+                        </configuration>
+
+                    </execution>
+
+                </executions>
+
+            </plugin>
+
+
         </plugins>
+
     </build>
 
 </project>
